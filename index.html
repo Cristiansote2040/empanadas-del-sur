@@ -2,15 +2,16 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Empanadas del Sur</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Inter', sans-serif;
       background: #FDF8F3;
       color: #2D1B0E;
+      overflow-x: hidden;
     }
     .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
@@ -25,12 +26,10 @@
     .hero::before {
       content: '';
       position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle at 30% 40%, rgba(218,165,32,0.08) 0%, transparent 50%),
-                  radial-gradient(circle at 70% 60%, rgba(218,165,32,0.05) 0%, transparent 50%);
+      top: -50%; left: -50%;
+      width: 200%; height: 200%;
+      background: radial-gradient(circle at 30% 40%, rgba(218,165,32,0.1) 0%, transparent 50%),
+                  radial-gradient(circle at 70% 60%, rgba(218,165,32,0.06) 0%, transparent 50%);
     }
     .hero-content { position: relative; z-index: 1; }
     .hero-badge {
@@ -61,26 +60,63 @@
       max-width: 360px;
       margin: 0 auto 28px;
     }
-    .hero-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: linear-gradient(135deg, #D4A843 0%, #C4962E 100%);
-      color: #2D1B0E;
-      font-weight: 700;
-      font-size: 14px;
-      padding: 14px 32px;
-      border-radius: 50px;
-      text-decoration: none;
-      box-shadow: 0 8px 25px rgba(212,168,67,0.35);
-      transition: all 0.3s ease;
-    }
-    .hero-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 35px rgba(212,168,67,0.45); }
 
-    /* Process Section */
-    .process {
-      padding: 60px 20px;
+    /* Header */
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
       background: #FFF;
+      border-bottom: 1px solid #EDE0D3;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .header-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: #2D1B0E;
+    }
+    .header-logo span { color: #D4A843; }
+    .cart-btn {
+      position: relative;
+      background: none;
+      border: 1px solid #EDE0D3;
+      border-radius: 12px;
+      padding: 8px 14px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+      font-weight: 500;
+      color: #2D1B0E;
+      transition: all 0.2s;
+    }
+    .cart-btn:hover { border-color: #D4A843; background: #FDF8F3; }
+    .cart-count {
+      position: absolute;
+      top: -6px;
+      right: -6px;
+      background: #D4A843;
+      color: #2D1B0E;
+      font-size: 10px;
+      font-weight: 700;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Menu Grid */
+    .menu-section {
+      padding: 40px 20px 60px;
     }
     .section-tag {
       display: block;
@@ -97,137 +133,313 @@
       font-size: 28px;
       text-align: center;
       color: #2D1B0E;
-      margin-bottom: 40px;
+      margin-bottom: 36px;
       line-height: 1.2;
-    }
-    .process-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      max-width: 500px;
-      margin: 0 auto;
-    }
-    .process-card {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      background: #FDF8F3;
-      border: 1px solid #EDE0D3;
-      border-radius: 16px;
-      padding: 18px 20px;
-      transition: all 0.3s ease;
-    }
-    .process-card:hover { border-color: #D4A843; background: #FFF; }
-    .process-step {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #D4A843 0%, #C4962E 100%);
-      color: #2D1B0E;
-      font-weight: 700;
-      font-size: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-    .process-info h3 {
-      font-size: 15px;
-      font-weight: 600;
-      color: #2D1B0E;
-      margin-bottom: 3px;
-    }
-    .process-info p {
-      font-size: 13px;
-      color: #8B7355;
-      line-height: 1.4;
-    }
-
-    /* Menu */
-    .menu {
-      padding: 60px 20px;
-      background: #FDF8F3;
     }
     .menu-grid {
       display: grid;
       grid-template-columns: 1fr;
       gap: 16px;
       max-width: 500px;
-      margin: 0 auto 40px;
+      margin: 0 auto;
     }
-    .menu-item {
+    .menu-card {
       background: #FFF;
       border: 1px solid #EDE0D3;
       border-radius: 16px;
-      padding: 20px;
+      overflow: hidden;
       display: flex;
-      justify-content: space-between;
-      align-items: center;
       transition: all 0.3s ease;
     }
-    .menu-item:hover { border-color: #D4A843; }
-    .menu-item-left h3 {
+    .menu-card:hover { border-color: #D4A843; }
+    .menu-card-img {
+      width: 110px;
+      min-height: 110px;
+      flex-shrink: 0;
+      background: #EDE0D3;
+    }
+    .menu-card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .menu-card-body {
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      flex: 1;
+    }
+    .menu-card-body h3 {
       font-size: 15px;
       font-weight: 600;
       color: #2D1B0E;
-      margin-bottom: 4px;
+      margin-bottom: 3px;
     }
-    .menu-item-left p {
+    .menu-card-body .desc {
       font-size: 12px;
       color: #8B7355;
+      margin-bottom: 8px;
+      line-height: 1.3;
     }
-    .menu-item-right {
-      text-align: right;
+    .menu-card-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
-    .menu-item-right .price {
+    .menu-card-bottom .price {
       font-weight: 700;
       font-size: 16px;
       color: #D4A843;
     }
-    .menu-item-right .unit {
-      font-size: 11px;
-      color: #8B7355;
+    .add-btn {
+      background: #2D1B0E;
+      color: #FFF;
+      border: none;
+      border-radius: 8px;
+      padding: 6px 14px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
     }
-    .menu-cta {
-      text-align: center;
-    }
-    .menu-cta p {
-      font-size: 13px;
-      color: #8B7355;
-      margin-bottom: 16px;
-    }
+    .add-btn:hover { background: #4A2C1A; }
 
-    /* Contact */
-    .contact {
-      padding: 50px 20px;
-      background: linear-gradient(135deg, #2D1B0E 0%, #4A2C1A 100%);
+    /* Cart Sidebar */
+    .cart-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.4);
+      z-index: 200;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+    .cart-overlay.open { opacity: 1; pointer-events: auto; }
+    .cart-sidebar {
+      position: fixed;
+      top: 0; right: 0;
+      width: 90%;
+      max-width: 380px;
+      height: 100%;
+      background: #FFF;
+      z-index: 201;
+      transform: translateX(100%);
+      transition: transform 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    .cart-sidebar.open { transform: translateX(0); }
+    .cart-header {
+      padding: 20px;
+      border-bottom: 1px solid #EDE0D3;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .cart-header h2 { font-size: 18px; font-weight: 700; }
+    .cart-close {
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: #8B7355;
+      padding: 4px;
+    }
+    .cart-items {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px 20px;
+    }
+    .cart-empty {
+      text-align: center;
+      color: #8B7355;
+      padding: 40px 0;
+      font-size: 14px;
+    }
+    .cart-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid #F5EDE4;
+    }
+    .cart-item-img {
+      width: 48px;
+      height: 48px;
+      border-radius: 8px;
+      object-fit: cover;
+      background: #EDE0D3;
+    }
+    .cart-item-info { flex: 1; }
+    .cart-item-info h4 { font-size: 13px; font-weight: 600; margin-bottom: 2px; }
+    .cart-item-info .item-price { font-size: 12px; color: #D4A843; font-weight: 600; }
+    .cart-item-qty {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .cart-item-qty button {
+      width: 26px;
+      height: 26px;
+      border-radius: 6px;
+      border: 1px solid #EDE0D3;
+      background: #FFF;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #2D1B0E;
+    }
+    .cart-item-qty button:hover { background: #FDF8F3; }
+    .cart-item-qty span { font-size: 14px; font-weight: 600; min-width: 20px; text-align: center; }
+    .cart-footer {
+      padding: 20px;
+      border-top: 1px solid #EDE0D3;
+    }
+    .cart-total {
+      display: flex;
+      justify-content: space-between;
+      font-weight: 700;
+      font-size: 16px;
+      margin-bottom: 12px;
+    }
+    .checkout-btn {
+      width: 100%;
+      background: linear-gradient(135deg, #D4A843 0%, #C4962E 100%);
+      border: none;
+      border-radius: 12px;
+      padding: 14px;
+      font-size: 15px;
+      font-weight: 700;
+      color: #2D1B0E;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .checkout-btn:hover { transform: translateY(-1px); box-shadow: 0 8px 20px rgba(212,168,67,0.3); }
+    .checkout-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; box-shadow: none; }
+
+    /* Checkout Modal */
+    .checkout-modal {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 300;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+    .checkout-modal.open { opacity: 1; pointer-events: auto; }
+    .checkout-card {
+      background: #FFF;
+      border-radius: 20px;
+      padding: 32px 24px;
+      max-width: 380px;
+      width: 100%;
       text-align: center;
     }
-    .contact h2 {
+    .checkout-card h2 {
       font-family: 'Playfair Display', serif;
-      font-size: 26px;
+      font-size: 24px;
+      color: #2D1B0E;
+      margin-bottom: 20px;
+    }
+    .payment-option {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 16px;
+      border: 2px solid #EDE0D3;
+      border-radius: 12px;
+      margin-bottom: 10px;
+      cursor: pointer;
+      text-align: left;
+      transition: all 0.2s;
+    }
+    .payment-option:hover { border-color: #D4A843; }
+    .payment-option.selected { border-color: #D4A843; background: #FDF8F3; }
+    .payment-option .emoji { font-size: 22px; }
+    .payment-option .label { font-size: 14px; font-weight: 600; }
+    .payment-option .sub { font-size: 11px; color: #8B7355; }
+    .pay-btn {
+      width: 100%;
+      background: linear-gradient(135deg, #D4A843 0%, #C4962E 100%);
+      border: none;
+      border-radius: 12px;
+      padding: 14px;
+      font-size: 15px;
+      font-weight: 700;
+      color: #2D1B0E;
+      cursor: pointer;
+      margin-top: 16px;
+      transition: all 0.2s;
+    }
+    .pay-btn:hover { transform: translateY(-1px); }
+    .pay-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+
+    /* Success Screen */
+    .success-screen {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(135deg, #2D1B0E 0%, #4A2C1A 100%);
+      z-index: 400;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 30px;
+      text-align: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s;
+    }
+    .success-screen.open { opacity: 1; pointer-events: auto; }
+    .success-icon {
+      font-size: 60px;
+      margin-bottom: 20px;
+    }
+    .success-screen h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 30px;
       color: #FFF;
       margin-bottom: 10px;
     }
-    .contact p {
+    .success-screen .sub {
       color: rgba(255,255,255,0.6);
-      font-size: 14px;
+      font-size: 15px;
+      margin-bottom: 6px;
+    }
+    .success-screen .highlight {
+      color: #D4A843;
+      font-size: 17px;
+      font-weight: 600;
       margin-bottom: 24px;
     }
-    .whatsapp-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: #25D366;
-      color: #FFF;
-      font-weight: 600;
-      font-size: 14px;
-      padding: 14px 28px;
-      border-radius: 50px;
-      text-decoration: none;
-      transition: all 0.3s ease;
+    .success-screen .note {
+      color: rgba(255,255,255,0.4);
+      font-size: 13px;
+      max-width: 280px;
+      line-height: 1.5;
     }
-    .whatsapp-btn:hover { background: #1DA851; transform: translateY(-2px); }
+    .new-order-btn {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: #FFF;
+      padding: 12px 28px;
+      border-radius: 50px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: all 0.2s;
+    }
+    .new-order-btn:hover { background: rgba(255,255,255,0.2); }
 
     /* Footer */
     .footer {
@@ -238,158 +450,231 @@
       font-size: 12px;
     }
 
-    /* Tablet+ */
     @media (min-width: 768px) {
       .hero h1 { font-size: 56px; }
-      .hero p { font-size: 17px; max-width: 500px; }
+      .hero p { max-width: 500px; font-size: 17px; }
       .section-title { font-size: 34px; }
       .menu-grid { grid-template-columns: repeat(2, 1fr); max-width: 700px; }
+      .menu-card { flex-direction: column; }
+      .menu-card-img { width: 100%; height: 140px; }
     }
     @media (min-width: 1024px) {
       .hero { padding: 80px 20px 70px; }
       .hero h1 { font-size: 68px; }
-      .process-grid { max-width: 700px; flex-direction: row; flex-wrap: wrap; justify-content: center; }
-      .process-card { flex: 1; min-width: 200px; flex-direction: column; text-align: center; padding: 24px; }
       .menu-grid { grid-template-columns: repeat(3, 1fr); max-width: 900px; }
     }
   </style>
 </head>
 <body>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-logo">Empanadas <span>del Sur</span></div>
+    <button class="cart-btn" onclick="openCart()">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+      Carrito
+      <span class="cart-count" id="cartCount">0</span>
+    </button>
+  </header>
+
   <!-- Hero -->
   <section class="hero">
     <div class="hero-content">
       <span class="hero-badge">🔥 Hechas al momento</span>
       <h1>Empanadas <span>del Sur</span></h1>
-      <p>Las mejores empanadas de la zona, hechas con receta casera y los ingredientes más frescos.</p>
-      <a href="https://wa.me/541133827506?text=Hola!%20Quiero%20hacer%20un%20pedido" class="hero-btn" target="_blank">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.104 1.016-1.104 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
-        Hacer pedido
-      </a>
-    </div>
-  </section>
-
-  <!-- Process -->
-  <section class="process">
-    <span class="section-tag">Proceso completo</span>
-    <h2 class="section-title">Así llegamos a tu mesa</h2>
-    <div class="process-grid">
-      <div class="process-card">
-        <div class="process-step">1</div>
-        <div class="process-info">
-          <h3>Elegís y pedís</h3>
-          <p>Seleccionás tus empanadas favoritas y nos mandás un WhatsApp.</p>
-        </div>
-      </div>
-      <div class="process-card">
-        <div class="process-step">2</div>
-        <div class="process-info">
-          <h3>Las preparamos</h3>
-          <p>Las hacemos al momento con ingredientes frescos y receta casera.</p>
-        </div>
-      </div>
-      <div class="process-card">
-        <div class="process-step">3</div>
-        <div class="process-info">
-          <h3>Las entregamos</h3>
-          <p>Te las llevamos calentitas a la puerta de tu casa o negocio.</p>
-        </div>
-      </div>
-      <div class="process-card">
-        <div class="process-step">4</div>
-        <div class="process-info">
-          <h3>Las disfrutás</h3>
-          <p>Listo. Llegaron. Solo queda comer y repetir.</p>
-        </div>
-      </div>
+      <p>Las mejores empanadas hechas con receta casera y los ingredientes más frescos. Pedí desde acá.</p>
     </div>
   </section>
 
   <!-- Menu -->
-  <section class="menu">
-    <span class="section-tag">Nuestras clásicas</span>
-    <h2 class="section-title">Probá las que quieras</h2>
-    <div class="menu-grid">
-      <div class="menu-item">
-        <div class="menu-item-left">
-          <h3>Carne picante 🔥</h3>
-          <p>Carne, cebolla, morrón y un toque de picante</p>
-        </div>
-        <div class="menu-item-right">
-          <div class="price">$1.200</div>
-          <div class="unit">c/u</div>
-        </div>
-      </div>
-      <div class="menu-item">
-        <div class="menu-item-left">
-          <h3>Pollo 🐔</h3>
-          <p>Pollo, verdeo, aceitunas y huevo</p>
-        </div>
-        <div class="menu-item-right">
-          <div class="price">$1.100</div>
-          <div class="unit">c/u</div>
-        </div>
-      </div>
-      <div class="menu-item">
-        <div class="menu-item-left">
-          <h3>Jamón y queso 🧀</h3>
-          <p>Jamón, queso muzzarella y cebolla</p>
-        </div>
-        <div class="menu-item-right">
-          <div class="price">$1.000</div>
-          <div class="unit">c/u</div>
-        </div>
-      </div>
-      <div class="menu-item">
-        <div class="menu-item-left">
-          <h3>Verdura 🌿</h3>
-          <p>Espinaca, ricota, queso y nuez moscada</p>
-        </div>
-        <div class="menu-item-right">
-          <div class="price">$1.000</div>
-          <div class="unit">c/u</div>
-        </div>
-      </div>
-      <div class="menu-item">
-        <div class="menu-item-left">
-          <h3>Carne cortada 🔪</h3>
-          <p>Carne cortada a cuchillo, cebolla y morrón</p>
-        </div>
-        <div class="menu-item-right">
-          <div class="price">$1.300</div>
-          <div class="unit">c/u</div>
-        </div>
-      </div>
-      <div class="menu-item">
-        <div class="menu-item-left">
-          <h3>Dulce de leche 🍯</h3>
-          <p>Empanada dulce horneada, bañada en azúcar</p>
-        </div>
-        <div class="menu-item-right">
-          <div class="price">$900</div>
-          <div class="unit">c/u</div>
-        </div>
-      </div>
-    </div>
-    <div class="menu-cta">
-      <p>Pedido mínimo 6 unidades • Envíos a todo CABA y GBA</p>
-      <a href="https://wa.me/541133827506?text=Hola!%20Quiero%20hacer%20un%20pedido%20de%20empanadas" class="hero-btn" target="_blank">
-        Hacer pedido ahora
-      </a>
-    </div>
+  <section class="menu-section" id="menu">
+    <span class="section-tag">Nuestros sabores</span>
+    <h2 class="section-title">Elegí tus favoritas</h2>
+    <div class="menu-grid" id="menuGrid"></div>
   </section>
 
-  <!-- Contact -->
-  <section class="contact">
-    <h2>¿Listo para probarlas?</h2>
-    <p>Mandanos un WhatsApp y coordinamos el pedido</p>
-    <a href="https://wa.me/541133827506" class="whatsapp-btn" target="_blank">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.104 1.016-1.104 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
-      Escribinos al WhatsApp
-    </a>
-  </section>
-
+  <!-- Footer -->
   <footer class="footer">
     <p>© 2025 Empanadas del Sur — Hechas con amor, en Buenos Aires</p>
   </footer>
+
+  <!-- Cart Overlay -->
+  <div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+
+  <!-- Cart Sidebar -->
+  <div class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header">
+      <h2>Tu pedido</h2>
+      <button class="cart-close" onclick="closeCart()">&times;</button>
+    </div>
+    <div class="cart-items" id="cartItems">
+      <div class="cart-empty">El carrito está vacío</div>
+    </div>
+    <div class="cart-footer">
+      <div class="cart-total">
+        <span>Total</span>
+        <span id="cartTotal">$0</span>
+      </div>
+      <button class="checkout-btn" id="checkoutBtn" onclick="openCheckout()" disabled>Ir a pagar</button>
+    </div>
+  </div>
+
+  <!-- Checkout Modal -->
+  <div class="checkout-modal" id="checkoutModal">
+    <div class="checkout-card">
+      <h2>Elegí cómo pagar</h2>
+      <div class="payment-option selected" onclick="selectPayment(this)">
+        <span class="emoji">💳</span>
+        <div><div class="label">Tarjeta de crédito/débito</div><div class="sub">Simulación de pago</div></div>
+      </div>
+      <div class="payment-option" onclick="selectPayment(this)">
+        <span class="emoji">📱</span>
+        <div><div class="label">Mercado Pago</div><div class="sub">Simulación de pago</div></div>
+      </div>
+      <div class="payment-option" onclick="selectPayment(this)">
+        <span class="emoji">💵</span>
+        <div><div class="label">Efectivo</div><div class="sub">Pagás al recibir</div></div>
+      </div>
+      <div style="margin-top: 8px; font-size: 12px; color: #8B7355;">Total a pagar: <strong id="checkoutTotal">$0</strong></div>
+      <button class="pay-btn" id="payBtn" onclick="processPayment()">Pagar ahora</button>
+    </div>
+  </div>
+
+  <!-- Success Screen -->
+  <div class="success-screen" id="successScreen">
+    <div class="success-icon">✅</div>
+    <h2>Pago confirmado</h2>
+    <p class="sub">Ya pagaste. Ahora nosotros nos encargamos.</p>
+    <p class="highlight">¡Te vamos a dar tu comida!</p>
+    <p class="note">Preparamos tus empanadas al momento y te las llevamos. Gracias por tu pedido.</p>
+    <button class="new-order-btn" onclick="resetOrder()">Hacer otro pedido</button>
+  </div>
+
+  <script>
+    const products = [
+      { id: 1, name: 'Carne picante 🔥', desc: 'Carne, cebolla, morrón y un toque de picante', price: 1200, img: 'https://images.unsplash.com/photo-1604467794349-0b74285de7e7?w=200&q=80' },
+      { id: 2, name: 'Pollo 🐔', desc: 'Pollo, verdeo, aceitunas y huevo', price: 1100, img: 'https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=200&q=80' },
+      { id: 3, name: 'Jamón y queso 🧀', desc: 'Jamón, queso muzzarella y cebolla', price: 1000, img: 'https://images.unsplash.com/photo-1551782450-a2132b4ba21d?w=200&q=80' },
+      { id: 4, name: 'Verdura 🌿', desc: 'Espinaca, ricota, queso y nuez moscada', price: 1000, img: 'https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=200&q=80' },
+      { id: 5, name: 'Carne cortada 🔪', desc: 'Carne cortada a cuchillo, cebolla y morrón', price: 1300, img: 'https://images.unsplash.com/photo-1558030006-450675393462?w=200&q=80' },
+      { id: 6, name: 'Dulce de leche 🍯', desc: 'Empanada dulce horneada, bañada en azúcar', price: 900, img: 'https://images.unsplash.com/photo-1551024601-bec78aea704b?w=200&q=80' },
+    ];
+
+    let cart = [];
+
+    function renderMenu() {
+      const grid = document.getElementById('menuGrid');
+      grid.innerHTML = products.map(p => `
+        <div class="menu-card">
+          <div class="menu-card-img"><img src="${p.img}" alt="${p.name}" loading="lazy" /></div>
+          <div class="menu-card-body">
+            <h3>${p.name}</h3>
+            <div class="desc">${p.desc}</div>
+            <div class="menu-card-bottom">
+              <span class="price">$${p.price.toLocaleString('es-AR')}</span>
+              <button class="add-btn" onclick="addToCart(${p.id})">Agregar</button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function addToCart(id) {
+      const existing = cart.find(c => c.id === id);
+      if (existing) {
+        existing.qty++;
+      } else {
+        const product = products.find(p => p.id === id);
+        cart.push({ ...product, qty: 1 });
+      }
+      updateCart();
+      openCart();
+      animateCount();
+    }
+
+    function updateCart() {
+      const count = cart.reduce((sum, c) => sum + c.qty, 0);
+      document.getElementById('cartCount').textContent = count;
+      document.getElementById('checkoutBtn').disabled = count === 0;
+
+      const total = cart.reduce((sum, c) => sum + c.price * c.qty, 0);
+      document.getElementById('cartTotal').textContent = `$${total.toLocaleString('es-AR')}`;
+      document.getElementById('checkoutTotal').textContent = `$${total.toLocaleString('es-AR')}`;
+
+      const container = document.getElementById('cartItems');
+      if (cart.length === 0) {
+        container.innerHTML = '<div class="cart-empty">El carrito está vacío</div>';
+        return;
+      }
+      container.innerHTML = cart.map(c => `
+        <div class="cart-item">
+          <img class="cart-item-img" src="${c.img}" alt="${c.name}" />
+          <div class="cart-item-info">
+            <h4>${c.name}</h4>
+            <div class="item-price">$${c.price.toLocaleString('es-AR')}</div>
+          </div>
+          <div class="cart-item-qty">
+            <button onclick="changeQty(${c.id}, -1)">−</button>
+            <span>${c.qty}</span>
+            <button onclick="changeQty(${c.id}, 1)">+</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function changeQty(id, delta) {
+      const item = cart.find(c => c.id === id);
+      if (!item) return;
+      item.qty += delta;
+      if (item.qty <= 0) {
+        cart = cart.filter(c => c.id !== id);
+      }
+      updateCart();
+    }
+
+    let countAnim;
+    function animateCount() {
+      const el = document.getElementById('cartCount');
+      clearTimeout(countAnim);
+      el.style.transform = 'scale(1.3)';
+      el.style.transition = 'transform 0.15s ease';
+      countAnim = setTimeout(() => { el.style.transform = 'scale(1)'; }, 150);
+    }
+
+    function openCart() { document.getElementById('cartOverlay').classList.add('open'); document.getElementById('cartSidebar').classList.add('open'); }
+    function closeCart() { document.getElementById('cartOverlay').classList.remove('open'); document.getElementById('cartSidebar').classList.remove('open'); }
+
+    function openCheckout() {
+      if (cart.length === 0) return;
+      const total = cart.reduce((sum, c) => sum + c.price * c.qty, 0);
+      if (total < 600) { alert('Pedido mínimo: 6 unidades'); return; }
+      closeCart();
+      document.getElementById('checkoutModal').classList.add('open');
+    }
+
+    function selectPayment(el) {
+      document.querySelectorAll('.payment-option').forEach(o => o.classList.remove('selected'));
+      el.classList.add('selected');
+    }
+
+    function processPayment() {
+      const btn = document.getElementById('payBtn');
+      btn.disabled = true;
+      btn.textContent = 'Procesando...';
+      setTimeout(() => {
+        document.getElementById('checkoutModal').classList.remove('open');
+        document.getElementById('successScreen').classList.add('open');
+        btn.disabled = false;
+        btn.textContent = 'Pagar ahora';
+      }, 1800);
+    }
+
+    function resetOrder() {
+      cart = [];
+      updateCart();
+      document.getElementById('successScreen').classList.remove('open');
+    }
+
+    renderMenu();
+  </script>
 </body>
 </html>
