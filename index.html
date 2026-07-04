@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Empanadas del Sur</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #FDF8F3;
+      color: #2D1B0E;
+    }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(135deg, #2D1B0E 0%, #4A2C1A 100%);
+      padding: 60px 20px 50px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at 30% 40%, rgba(218,165,32,0.08) 0%, transparent 50%),
+                  radial-gradient(circle at 70% 60%, rgba(218,165,32,0.05) 0%, transparent 50%);
+    }
+    .hero-content { position: relative; z-index: 1; }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(218,165,32,0.15);
+      border: 1px solid rgba(218,165,32,0.3);
+      color: #D4A843;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      padding: 6px 16px;
+      border-radius: 50px;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 42px;
+      color: #FFF;
+      margin-bottom: 12px;
+      line-height: 1.15;
+    }
+    .hero h1 span { color: #D4A843; }
+    .hero p {
+      color: rgba(255,255,255,0.7);
+      font-size: 15px;
+      line-height: 1.6;
+      max-width: 360px;
+      margin: 0 auto 28px;
+    }
+    .hero-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, #D4A843 0%, #C4962E 100%);
+      color: #2D1B0E;
+      font-weight: 700;
+      font-size: 14px;
+      padding: 14px 32px;
+      border-radius: 50px;
+      text-decoration: none;
+      box-shadow: 0 8px 25px rgba(212,168,67,0.35);
+      transition: all 0.3s ease;
+    }
+    .hero-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 35px rgba(212,168,67,0.45); }
+
+    /* Process Section */
+    .process {
+      padding: 60px 20px;
+      background: #FFF;
+    }
+    .section-tag {
+      display: block;
+      text-align: center;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      color: #D4A843;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      text-align: center;
+      color: #2D1B0E;
+      margin-bottom: 40px;
+      line-height: 1.2;
+    }
+    .process-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    .process-card {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: #FDF8F3;
+      border: 1px solid #EDE0D3;
+      border-radius: 16px;
+      padding: 18px 20px;
+      transition: all 0.3s ease;
+    }
+    .process-card:hover { border-color: #D4A843; background: #FFF; }
+    .process-step {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #D4A843 0%, #C4962E 100%);
+      color: #2D1B0E;
+      font-weight: 700;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .process-info h3 {
+      font-size: 15px;
+      font-weight: 600;
+      color: #2D1B0E;
+      margin-bottom: 3px;
+    }
+    .process-info p {
+      font-size: 13px;
+      color: #8B7355;
+      line-height: 1.4;
+    }
+
+    /* Menu */
+    .menu {
+      padding: 60px 20px;
+      background: #FDF8F3;
+    }
+    .menu-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      max-width: 500px;
+      margin: 0 auto 40px;
+    }
+    .menu-item {
+      background: #FFF;
+      border: 1px solid #EDE0D3;
+      border-radius: 16px;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.3s ease;
+    }
+    .menu-item:hover { border-color: #D4A843; }
+    .menu-item-left h3 {
+      font-size: 15px;
+      font-weight: 600;
+      color: #2D1B0E;
+      margin-bottom: 4px;
+    }
+    .menu-item-left p {
+      font-size: 12px;
+      color: #8B7355;
+    }
+    .menu-item-right {
+      text-align: right;
+    }
+    .menu-item-right .price {
+      font-weight: 700;
+      font-size: 16px;
+      color: #D4A843;
+    }
+    .menu-item-right .unit {
+      font-size: 11px;
+      color: #8B7355;
+    }
+    .menu-cta {
+      text-align: center;
+    }
+    .menu-cta p {
+      font-size: 13px;
+      color: #8B7355;
+      margin-bottom: 16px;
+    }
+
+    /* Contact */
+    .contact {
+      padding: 50px 20px;
+      background: linear-gradient(135deg, #2D1B0E 0%, #4A2C1A 100%);
+      text-align: center;
+    }
+    .contact h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      color: #FFF;
+      margin-bottom: 10px;
+    }
+    .contact p {
+      color: rgba(255,255,255,0.6);
+      font-size: 14px;
+      margin-bottom: 24px;
+    }
+    .whatsapp-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #25D366;
+      color: #FFF;
+      font-weight: 600;
+      font-size: 14px;
+      padding: 14px 28px;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    .whatsapp-btn:hover { background: #1DA851; transform: translateY(-2px); }
+
+    /* Footer */
+    .footer {
+      padding: 24px 20px;
+      text-align: center;
+      background: #1A0F08;
+      color: rgba(255,255,255,0.4);
+      font-size: 12px;
+    }
+
+    /* Tablet+ */
+    @media (min-width: 768px) {
+      .hero h1 { font-size: 56px; }
+      .hero p { font-size: 17px; max-width: 500px; }
+      .section-title { font-size: 34px; }
+      .menu-grid { grid-template-columns: repeat(2, 1fr); max-width: 700px; }
+    }
+    @media (min-width: 1024px) {
+      .hero { padding: 80px 20px 70px; }
+      .hero h1 { font-size: 68px; }
+      .process-grid { max-width: 700px; flex-direction: row; flex-wrap: wrap; justify-content: center; }
+      .process-card { flex: 1; min-width: 200px; flex-direction: column; text-align: center; padding: 24px; }
+      .menu-grid { grid-template-columns: repeat(3, 1fr); max-width: 900px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-content">
+      <span class="hero-badge">🔥 Hechas al momento</span>
+      <h1>Empanadas <span>del Sur</span></h1>
+      <p>Las mejores empanadas de la zona, hechas con receta casera y los ingredientes más frescos.</p>
+      <a href="https://wa.me/541133827506?text=Hola!%20Quiero%20hacer%20un%20pedido" class="hero-btn" target="_blank">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.104 1.016-1.104 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
+        Hacer pedido
+      </a>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section class="process">
+    <span class="section-tag">Proceso completo</span>
+    <h2 class="section-title">Así llegamos a tu mesa</h2>
+    <div class="process-grid">
+      <div class="process-card">
+        <div class="process-step">1</div>
+        <div class="process-info">
+          <h3>Elegís y pedís</h3>
+          <p>Seleccionás tus empanadas favoritas y nos mandás un WhatsApp.</p>
+        </div>
+      </div>
+      <div class="process-card">
+        <div class="process-step">2</div>
+        <div class="process-info">
+          <h3>Las preparamos</h3>
+          <p>Las hacemos al momento con ingredientes frescos y receta casera.</p>
+        </div>
+      </div>
+      <div class="process-card">
+        <div class="process-step">3</div>
+        <div class="process-info">
+          <h3>Las entregamos</h3>
+          <p>Te las llevamos calentitas a la puerta de tu casa o negocio.</p>
+        </div>
+      </div>
+      <div class="process-card">
+        <div class="process-step">4</div>
+        <div class="process-info">
+          <h3>Las disfrutás</h3>
+          <p>Listo. Llegaron. Solo queda comer y repetir.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Menu -->
+  <section class="menu">
+    <span class="section-tag">Nuestras clásicas</span>
+    <h2 class="section-title">Probá las que quieras</h2>
+    <div class="menu-grid">
+      <div class="menu-item">
+        <div class="menu-item-left">
+          <h3>Carne picante 🔥</h3>
+          <p>Carne, cebolla, morrón y un toque de picante</p>
+        </div>
+        <div class="menu-item-right">
+          <div class="price">$1.200</div>
+          <div class="unit">c/u</div>
+        </div>
+      </div>
+      <div class="menu-item">
+        <div class="menu-item-left">
+          <h3>Pollo 🐔</h3>
+          <p>Pollo, verdeo, aceitunas y huevo</p>
+        </div>
+        <div class="menu-item-right">
+          <div class="price">$1.100</div>
+          <div class="unit">c/u</div>
+        </div>
+      </div>
+      <div class="menu-item">
+        <div class="menu-item-left">
+          <h3>Jamón y queso 🧀</h3>
+          <p>Jamón, queso muzzarella y cebolla</p>
+        </div>
+        <div class="menu-item-right">
+          <div class="price">$1.000</div>
+          <div class="unit">c/u</div>
+        </div>
+      </div>
+      <div class="menu-item">
+        <div class="menu-item-left">
+          <h3>Verdura 🌿</h3>
+          <p>Espinaca, ricota, queso y nuez moscada</p>
+        </div>
+        <div class="menu-item-right">
+          <div class="price">$1.000</div>
+          <div class="unit">c/u</div>
+        </div>
+      </div>
+      <div class="menu-item">
+        <div class="menu-item-left">
+          <h3>Carne cortada 🔪</h3>
+          <p>Carne cortada a cuchillo, cebolla y morrón</p>
+        </div>
+        <div class="menu-item-right">
+          <div class="price">$1.300</div>
+          <div class="unit">c/u</div>
+        </div>
+      </div>
+      <div class="menu-item">
+        <div class="menu-item-left">
+          <h3>Dulce de leche 🍯</h3>
+          <p>Empanada dulce horneada, bañada en azúcar</p>
+        </div>
+        <div class="menu-item-right">
+          <div class="price">$900</div>
+          <div class="unit">c/u</div>
+        </div>
+      </div>
+    </div>
+    <div class="menu-cta">
+      <p>Pedido mínimo 6 unidades • Envíos a todo CABA y GBA</p>
+      <a href="https://wa.me/541133827506?text=Hola!%20Quiero%20hacer%20un%20pedido%20de%20empanadas" class="hero-btn" target="_blank">
+        Hacer pedido ahora
+      </a>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="contact">
+    <h2>¿Listo para probarlas?</h2>
+    <p>Mandanos un WhatsApp y coordinamos el pedido</p>
+    <a href="https://wa.me/541133827506" class="whatsapp-btn" target="_blank">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.104 1.016-1.104 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
+      Escribinos al WhatsApp
+    </a>
+  </section>
+
+  <footer class="footer">
+    <p>© 2025 Empanadas del Sur — Hechas con amor, en Buenos Aires</p>
+  </footer>
+</body>
+</html>
